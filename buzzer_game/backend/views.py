@@ -3,15 +3,14 @@ import json
 import time
 from django.http import StreamingHttpResponse
 # Create your views here.
-import time
-from django.http import StreamingHttpResponse
 
-from django.shortcuts import render
-import json
+from .models import Team, Player, Question
+from .serializers import TeamSerializer, PlayerSerializer, QuestionSerializer
+from rest_framework import viewsets
 
 
 def index_view(request):
-    return render(request, 'index.html')
+    return render(request, "index.html")
 
 
 def sse_view(request):
@@ -25,4 +24,19 @@ def sse_view(request):
             time.sleep(1)  # Simulate delay between updates
 
     # Streaming response with proper content type
-    return StreamingHttpResponse(event_stream(), content_type='text/event-stream')
+    return StreamingHttpResponse(event_stream(), content_type="text/event-stream")
+
+
+class PlayerViewSet(viewsets.ModelViewSet):
+    queryset = Player.objects.all()
+    serializer_class = PlayerSerializer
+
+
+class TeamViewSet(viewsets.ModelViewSet):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
+
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer

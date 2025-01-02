@@ -1,6 +1,16 @@
+from __future__ import annotations
 from django.db import models
-
 # Create your models here.
+
+
+class Team(models.Model):
+    name = models.CharField(max_length=200)
+    score = models.IntegerField(default=0)
+
+
+class Player(models.Model):
+    name = models.CharField(max_length=100)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
 
 class Question(models.Model):

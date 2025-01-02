@@ -15,13 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from rest_framework import routers
+from django.urls import path, include
 from django.contrib import admin
-from django.urls import path
 from backend import views
 from backend.views import index_view
+from backend.views import PlayerViewSet, TeamViewSet, QuestionViewSet
+
+router = routers.DefaultRouter()
+router.register(r"users", PlayerViewSet)
+router.register(r"team", TeamViewSet)
+router.register(r"questions", QuestionViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('events/', views.sse_view, name='sse'),
-    path('fe/', index_view, name='index'),  # Serve the HTML page
+    path("events/", views.sse_view, name="sse"),
+    path("fe/", index_view, name="index"),  # Serve the HTML page
+    path("api/", include("rest_framework.urls", namespace="rest_framework")),
 ]
