@@ -25,7 +25,7 @@ from backend.views import PlayerViewSet, TeamViewSet, QuestionViewSet
 router = routers.DefaultRouter()
 router.register(r"player", PlayerViewSet)
 router.register(r"team", TeamViewSet)
-router.register(r"questions", QuestionViewSet)
+router.register(r"question", QuestionViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
