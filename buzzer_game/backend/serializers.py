@@ -2,16 +2,18 @@ from rest_framework import serializers
 from .models import Player, Team, Question
 
 
-class PlayerSerializer(serializers.HyperlinkedModelSerializer):
+class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
-        fields = "__all__"
+        fields = ["id", "first_name", "age"]
 
 
-class TeamSerializer(serializers.HyperlinkedModelSerializer):
+class TeamSerializer(serializers.ModelSerializer):
+    players = PlayerSerializer(many=True, read_only=True)
+
     class Meta:
         model = Team
-        fields = "__all__"
+        fields = ["name", "players"]
 
 
 class QuestionSerializer(serializers.HyperlinkedModelSerializer):

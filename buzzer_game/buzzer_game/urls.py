@@ -23,7 +23,7 @@ from backend.views import index_view
 from backend.views import PlayerViewSet, TeamViewSet, QuestionViewSet
 
 router = routers.DefaultRouter()
-router.register(r"users", PlayerViewSet)
+router.register(r"player", PlayerViewSet)
 router.register(r"team", TeamViewSet)
 router.register(r"questions", QuestionViewSet)
 
@@ -31,5 +31,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("events/", views.sse_view, name="sse"),
     path("fe/", index_view, name="index"),  # Serve the HTML page
-    path("api/", include("rest_framework.urls", namespace="rest_framework")),
+    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
+    path("api/", include(router.urls)),
 ]

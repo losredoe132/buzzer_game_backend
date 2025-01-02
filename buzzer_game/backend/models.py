@@ -9,8 +9,9 @@ class Team(models.Model):
 
 
 class Player(models.Model):
-    name = models.CharField(max_length=100)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="players")
+    age = models.IntegerField()
 
 
 class Question(models.Model):
