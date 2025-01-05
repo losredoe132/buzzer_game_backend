@@ -1,0 +1,15 @@
+meta {
+  name: Delete Player
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:8000/api/player/
+  body: json
+  auth: none
+}
+
+body:json {
+  {"name":"Kaddy", "age":16, "team":1}
+}

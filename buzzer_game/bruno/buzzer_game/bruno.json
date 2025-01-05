@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "buzzer_game",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

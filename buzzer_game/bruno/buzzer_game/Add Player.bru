@@ -1,0 +1,15 @@
+meta {
+  name: Add Player
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:8000/api/player/
+  body: json
+  auth: none
+}
+
+body:json {
+  {"name":"Kaddy", "age":16, }
+}
