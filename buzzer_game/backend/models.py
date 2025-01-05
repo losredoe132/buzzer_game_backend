@@ -11,7 +11,7 @@ class Team(models.Model):
 class Player(models.Model):
     name = models.CharField(max_length=100)
     team = models.ForeignKey(
-        Team, on_delete=models.CASCADE, related_name="players", null=True, blank=True
+        Team, on_delete=models.SET_NULL, related_name="players", null=True, blank=True
     )
     age = models.IntegerField()
 
