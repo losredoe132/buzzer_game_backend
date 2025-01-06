@@ -1,14 +1,16 @@
 from dataclasses import dataclass
-from models import Team
 
 from enum import Enum, auto
 
 
 class State(Enum):
     QUESTION_ASKED = auto()
+    QUESTION_ANSWERED = auto()
+    ANSWER_WRONG = auto()
+    ANSWER_CORRECT = auto()
 
 
 @dataclass
 class SSSEState:
-    players: list[Team]
-    active_player: Team
+    state: State
+    active_team_id: int
